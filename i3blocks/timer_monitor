@@ -6,7 +6,6 @@ COLOR="#FFAF00"
 ## Listen for ghemx
 PID="$(pgrep -n -u $USER ghemx)"
 
-## if no ghemx do so
 if [[ -z "$PID" ]]; then
     echo ""
 else
