@@ -10,7 +10,7 @@ PID="$(pgrep -n -u $USER ghemx)"
 if [[ -z "$PID" ]]; then
     echo ""
 else
-    ## tells us the age of ztime
+    ## tells us the age of ghemx
     COUNT="$(ps -o etime= -p $PID | sed 's/ //g' | paste -sd ''-)"
     TITLE="$(cat /dev/shm/ghemx_title)"
     TIME_E="$(cat /dev/shm/ghemx_time)"
