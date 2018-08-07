@@ -1,0 +1,233 @@
+#!/bin/sh
+
+######################################################################
+# ghemx is a distraction free timer for tiling WMs or tmux
+# Copyright (C) 2018 csmertx
+######################################################################
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+######################################################################
+
+## ghem - Klingon for midnight snack
+## http://klingonska.org/dict/?q=ghem
+
+#####################################################
+########### PLEASE READ ##############################
+#######################################################
+###### ghemx creates three files and one directory
+###### Please modify these variables at your discretion
+###### $timer_dir, $timer_time_tmp, $timer_title_tmp &
+###### $timer_conf_dir $timer_save_tmp
+######################
+
+seconds="$((seconds + 1))"
+timer_dir="/home/$USER/.config/ghemx"
+dircheck="$(ls $timer_dir 2> /dev/null)"
+
+if [[ -z "$dircheck" ]]; then
+    echo ""
+else
+    mkdir $timer_dir 2> /dev/null
+fi
+
+## Check for existing tmp directorys
+if [[ -z $(ls /dev/shm 2> /dev/null) ]]; then
+    if [[ -z $(ls /tmp 2> /dev/null) ]]; then
+        echo "Error: Please comment lines 38-46 of ZDM and change var tmpdir to your local temporary directory."
+        sleep 10
+        exit 0
+    else
+        active_tmp="/tmp"
+    fi
+else
+    active_tmp="/dev/shm"
+fi
+
+
+timer_time_tmp="$active_tmp/ghemx_time"
+timer_title_tmp="$active_tmp/ghemx_title"
+timer_conf_dir="/home/$USER/.config/ghemx"
+timer_save_tmp="$timer_conf_dir/ghemx_timers.conf"
+
+## If check fails create $timer_save_tmp
+function timer_save_check {
+    find $timer_save_tmp
+}
+
+# Documentation
+function help {
+echo -e "\nghemx is a distraction free timer for X"
+echo "usage: ghemx [-hlxztrms] [--help] [--list]"
+echo "-h|--help     Read me"
+echo "-l|--list     List directory of ghemx tmp & save files"
+echo "              and list saved timer entries"
+echo "-x            Save timer (e.g. -x 'Waffles' -m 12)"
+echo "              (becomes current title)"
+echo "-z            Restore timer (e.g. -z 'example')"
+echo "-t            Timer title (default: Timer)"
+echo "-r            Timer hours"
+echo "-m            Timer minutes"
+echo "-s            Timer seconds"
+}
+
+## Available arguments
+while getopts ":s:r:m:z:x:t:h:l:" optname; do
+    case "$optname" in
+        r)
+            hours=${OPTARG}
+            ;;
+        m)
+            mins=${OPTARG}
+            ;;
+        s)
+            secs=${OPTARG}
+            ;;
+        t)
+            title="${OPTARG}"
+            ;;
+        x)
+            timer_save="${OPTARG}"
+            ;;
+        z)
+            timer_restore="${OPTARG}"
+            ;;
+        h|--help)
+            help
+            exit 0
+            ;;
+        l|--list)
+            print="$(cat $timer_save_tmp | sed 's/.*[a-z]/=> &/')"
+            echo -e "\nTemporary files:\n\n=> $timer_title_tmp\n=> $timer_time_tmp\n\nConfiguration file:\n\n=> $timer_save_tmp\n\nTimers:\n$print"
+            exit 0
+            ;;
+    esac
+done
+
+# If no arguments presented by user then print help and exit
+if [[ $# -eq 0 ]]; then
+    help
+    exit 0
+fi
+
+## if $timer_save is original then save to file and use arguments provided
+if [[ -n "$timer_save" ]]; then
+    title="$timer_save"
+    if [[ "$(ls $timer_save_tmp 2> /dev/null)" == "$timer_save_tmp" ]]; then
+        if [[ -n "$(cat $timer_save_tmp | grep -m 1 "$timer_save")" ]]; then
+            notify-send -u critical "Timer $timer_save already exists!"
+            exit 0
+        else
+            echo -e "\n[$timer_save]\ntitle = '$timer_save'\nhours = '$hours'\nminutes = '$mins'\nseconds = '$secs'" >> $timer_save_tmp
+            title="$(cat "$timer_save_tmp" | sed -n "/$timer_save/{n;p}" | sed 's/title//g;s/=//g;s/\x27//g' | awk '{$1=$1}1')"
+            hours="$(cat "$timer_save_tmp" | sed -n "/$timer_save/{n;n;p}" | awk '{print $3}' | sed "s/'//g")"
+            mins="$(cat "$timer_save_tmp" | sed -n "/$timer_save/{n;n;n;p}" | awk '{print $3}' | sed "s/'//g")"
+            secs="$(cat "$timer_save_tmp" | sed -n "/$timer_save/{n;n;n;n;p}" | awk '{print $3}' | sed "s/'//g")"
+        fi
+    else
+        ## 1st $timer_save creates $timer_save_tmp with [example]
+        mkdir $timer_conf_dir
+        echo -e "[break]\ntitle = 'break'\nhours = ''\nminutes = '15'\nseconds = ''" >> $timer_save_tmp
+        echo -e "\n[$timer_save]\ntitle = '$timer_save'\nhours = '$hours'\nminutes = '$mins'\nseconds = '$secs'" >> $timer_save_tmp
+        title="$(cat "$timer_save_tmp" | sed -n "/$timer_save/{n;p}" | sed 's/title//g;s/=//g;s/\x27//g' | awk '{$1=$1}1')"
+        hours="$(cat "$timer_save_tmp" | sed -n "/$timer_save/{n;n;p}" | awk '{print $3}' | sed "s/'//g")"
+        mins="$(cat "$timer_save_tmp" | sed -n "/$timer_save/{n;n;n;p}" | awk '{print $3}' | sed "s/'//g")"
+        secs="$(cat "$timer_save_tmp" | sed -n "/$timer_save/{n;n;n;n;p}" | awk '{print $3}' | sed "s/'//g")"
+    fi
+fi
+
+## if true a saved timer is loaded else help is printed
+if [[ -n "$timer_restore" ]]; then
+    restore="$(cat $timer_save_tmp | grep -m 1 "$timer_restore")"
+    if [[ -z "$restore" ]]; then
+        help
+        exit 0
+    else
+        title="$(cat "$timer_save_tmp" | sed -n "/$timer_restore/{n;p}" | sed 's/title//g;s/=//g;s/\x27//g' | awk '{$1=$1}1')"
+        hours="$(cat "$timer_save_tmp" | sed -n "/$timer_restore/{n;n;p}" | awk '{print $3}' | sed "s/'//g")"
+        mins="$(cat "$timer_save_tmp" | sed -n "/$timer_restore/{n;n;n;p}" | awk '{print $3}' | sed "s/'//g")"
+        secs="$(cat "$timer_save_tmp" | sed -n "/$timer_restore/{n;n;n;n;p}" | awk '{print $3}' | sed "s/'//g")"
+    fi
+fi
+
+## Populate all places
+if [[ -z $secs ]]; then
+    secs=00
+fi
+
+if [[ -z $mins ]]; then
+    mins=00
+fi
+
+if [[ -z $hours ]]; then
+    hours=00
+fi
+
+## Convert to seconds
+if [[ -n $secs ]]; then
+    sec=$secs
+fi
+
+if [[ -n $mins ]]; then
+    min="$((mins * 60))"
+fi
+
+if [[ -n $hours ]]; then
+    hour="$((hours * 60 * 60))"
+fi
+
+## Add leading zero or leave @ 00
+if [[ $mins -lt 10 ]]; then
+    if [[ $mins == 00 ]]; then
+        mins_e=$mins
+    else
+        mins_e="$(echo "0$mins")"
+    fi
+else
+    mins_e=$mins
+fi
+
+if [[ $hours -lt 10 ]]; then
+    if [[ $hours == 00 ]]; then
+        hours_e=$hours
+    else
+        hours_e="$(echo "0$hours")"
+    fi
+else
+    hours_e=$hours
+fi
+
+if [[ $secs -lt 10 ]]; then
+    if [[ $secs == 00 ]]; then
+        secs_e=$secs
+    else
+        secs_e="$(echo "0$secs")"
+    fi
+else
+    secs_e=$secs
+fi
+
+if [[ -z $title ]]; then
+    title="Timer"
+fi
+
+## Total number of seconds
+time_x="$((sec + min + hour))"
+
+## clean up output [00h:00m:00s]
+time_e="${hours_e}h:${mins_e}m:${secs_e}s"
+
+# Record time/title and notify when complete
+echo "$time_e" > "$timer_time_tmp"
+echo "$title" > "$timer_title_tmp"
+sleep $time_x
+notify-send -u critical "$title [$time_e]"
