@@ -22,6 +22,7 @@ if [[ -n $BLOCK_INSTANCE ]]; then
 	password=("-h" "$BLOCK_INSTANCE@localhost")
 fi
 
+## MMB to cancel
 filter() {
 	killall ghemx
 }
