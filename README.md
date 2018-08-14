@@ -1,8 +1,10 @@
 # ghemx
 Bar and console count up cooking timer (WIP)
 
+
 <p align="center">
-![ghemx](ghemx_screenshot.png "Preview of Ghemx")
+<img src="https://github.com/csmertx/ghemx/blob/master/ghemx_screenshot.png?raw=true" alt="Preview of ghemx"/>
+
 <pre>
 
 ghemx is a distraction free timer for X
