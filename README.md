@@ -1,12 +1,13 @@
-# ghemx 
+# ghemx
 
-Bar and console count up cooking timer (WIP)
 
 <p align="center">
 <img src="https://github.com/csmertx/ghemx/blob/master/ghemx_screenshot.png?raw=true" alt="Preview of ghemx"/>
 </p>
 
 <pre>
+
+Bar and console count up cooking timer (WIP)
 
 ghemx is a distraction free timer for X
 usage: ghemx [-ahlxztrms] [--help] [--list]
