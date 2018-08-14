@@ -1,6 +1,6 @@
 # ghemx 
 
-/*   */Bar and console count up cooking timer (WIP)
+Bar and console count up cooking timer (WIP)
 
 <p align="center">
 <img src="https://github.com/csmertx/ghemx/blob/master/ghemx_screenshot.png?raw=true" alt="Preview of ghemx"/>
