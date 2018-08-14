@@ -6,7 +6,7 @@
 ######################################################################
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 2 of the License, or
+# the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
 #
 # This program is distributed in the hope that it will be useful,
@@ -36,6 +36,11 @@ NC="\033[0m"
 seconds="$((seconds + 1))"
 timer_dir="/home/$USER/.config/ghemx"
 dircheck="$(ls $timer_dir 2> /dev/null 2> /dev/null)"
+
+### alert requires mutt
+## e.g. user@emailservice.com
+## e.g. 5555555555@txt.att.net
+alert_email=""
 
 timer_conf_dir="/home/$USER/.config/ghemx"
 timer_save_tmp="$timer_conf_dir/ghemx_timers.conf"
@@ -71,21 +76,22 @@ function timer_save_check {
 # Documentation
 function help {
 echo -e "\nghemx-cli is a distraction free timer for the command line"
-echo "usage: ghemx [-hlxztrms] [--help] [--list]"
+echo "usage: ghemx [-ahlxztrms] [--help] [--list]"
 echo "-h|--help     Read me"
 echo "-l|--list     List directory of ghemx tmp & save files"
 echo "              and list saved timer entries"
-echo "-x            Save timer (e.g. -x 'Waffles' -m 12)"
+echo "-x            Save timer (-x 'Waffles' -m 12)"
 echo "              (becomes current title)"
-echo "-z            Restore timer (e.g. -z 'example')"
+echo "-z            Restore timer (-z 'example')"
 echo "-t            Timer title (default: Timer)"
 echo "-r            Timer hours"
 echo "-m            Timer minutes"
 echo "-s            Timer seconds"
+echo "-a            Send alert (-t 'example' -s 15 -a y)"
 }
 
 ## Available arguments
-while getopts ":s:r:m:z:x:t:h:l:" optname; do
+while getopts ":s:r:m:z:x:t:h:l:a:" optname; do
     case "$optname" in
         r)
             hours=${OPTARG}
@@ -107,11 +113,15 @@ while getopts ":s:r:m:z:x:t:h:l:" optname; do
             ;;
         h|--help)
             help
+            exit 0
             ;;
         l|--list)
             print="$(cat $timer_save_tmp | sed 's/.*[a-z]/=> &/')"
             echo -e "\nTemporary files:\n\n=> $timer_title_tmp\n=> $timer_time_tmp\n\nConfiguration file:\n\n=> $timer_save_tmp\n\nTimers:\n$print" | less
             exit 0
+            ;;
+        a)
+            alert="${OPTARG}"
             ;;
     esac
 done
@@ -264,3 +274,9 @@ sh $timer_monitor
 
 # Record time/title and notify when complete
 echo -e "\r${RC}$title [$time_e]. DONE!${NC}"
+## Send email with mutt
+if [[ "$alert" == "y" ]]; then
+   echo "Timer Complete for: $title [$time_e]" | mutt -s "$title" $alert_email 2> /dev/null
+else
+   exit 0
+fi

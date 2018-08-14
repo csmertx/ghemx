@@ -6,7 +6,7 @@
 ######################################################################
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 2 of the License, or
+# the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
 #
 # This program is distributed in the hope that it will be useful,
@@ -33,6 +33,12 @@
 seconds="$((seconds + 1))"
 timer_dir="/home/$USER/.config/ghemx"
 dircheck="$(ls $timer_dir 2> /dev/null)"
+
+### alert requires mutt
+## e.g. user@emailservice.com
+## e.g. 5555555555@txt.att.net
+alert_email=""
+
 
 if [[ -z "$dircheck" ]]; then
     echo ""
@@ -67,7 +73,7 @@ function timer_save_check {
 # Documentation
 function help {
 echo -e "\nghemx is a distraction free timer for X"
-echo "usage: ghemx [-hlxztrms] [--help] [--list]"
+echo "usage: ghemx [-ahlxztrms] [--help] [--list]"
 echo "-h|--help     Read me"
 echo "-l|--list     List directory of ghemx tmp & save files"
 echo "              and list saved timer entries"
@@ -78,10 +84,11 @@ echo "-t            Timer title (default: Timer)"
 echo "-r            Timer hours"
 echo "-m            Timer minutes"
 echo "-s            Timer seconds"
+echo "-a            Send alert email <-t 'example' -s 15 -a y>"
 }
 
 ## Available arguments
-while getopts ":s:r:m:z:x:t:h:l:" optname; do
+while getopts ":s:r:m:z:x:t:h:l:a:" optname; do
     case "$optname" in
         r)
             hours=${OPTARG}
@@ -109,6 +116,9 @@ while getopts ":s:r:m:z:x:t:h:l:" optname; do
             print="$(cat $timer_save_tmp | sed 's/.*[a-z]/=> &/')"
             echo -e "\nTemporary files:\n\n=> $timer_title_tmp\n=> $timer_time_tmp\n\nConfiguration file:\n\n=> $timer_save_tmp\n\nTimers:\n$print"
             exit 0
+            ;;
+        a)
+            alert="y"
             ;;
     esac
 done
@@ -230,4 +240,13 @@ time_e="${hours_e}h:${mins_e}m:${secs_e}s"
 echo "$time_e" > "$timer_time_tmp"
 echo "$title" > "$timer_title_tmp"
 sleep $time_x
+
+## libnotify
 notify-send -u critical "$title [$time_e]"
+
+## Send email with mutt
+if [[ $alert == "y" ]]; then
+   echo "Timer Complete for: $title [$time_e]" | mutt -s "$title" $alert_email 2> /dev/null
+else
+   exit 0
+fi
