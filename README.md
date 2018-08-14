@@ -1,9 +1,10 @@
+# ghemx 
+
+/*   */Bar and console count up cooking timer (WIP)
+
 <p align="center">
-# ghemx
-Bar and console count up cooking timer (WIP)
-
-
 <img src="https://github.com/csmertx/ghemx/blob/master/ghemx_screenshot.png?raw=true" alt="Preview of ghemx"/>
+</p>
 
 <pre>
 
@@ -21,4 +22,3 @@ usage: ghemx [-ahlxztrms] [--help] [--list]
 -s            Timer seconds
 -a            Send alert email (e.g. -t 'example' -s 15 -a y)
 </pre>
-</p>
