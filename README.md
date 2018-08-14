@@ -4,8 +4,8 @@
 <p align="center">
 <img src="https://github.com/csmertx/ghemx/blob/master/ghemx_screenshot.png?raw=true" alt="Preview of ghemx"/>
 </p>
-Bar and console count up cooking timer (WIP)
 <pre>
+
 
 ghemx is a distraction free timer for X
 usage: ghemx [-ahlxztrms] [--help] [--list]
