@@ -6,7 +6,7 @@
 
 <img src="https://github.com/csmertx/ghemx/blob/master/ghemx_screenshot.png?raw=true" alt="Preview of ghemx"/>
 
-
+<pre>
 ghemx is a distraction free timer for X
 usage: ghemx [-ahlxztrms] [--help] [--list]
 -h|--help     Read me
