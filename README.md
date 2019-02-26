@@ -1,13 +1,10 @@
 # ghemx
 
-<p align="center">
-[![asciicast](https://asciinema.org/a/202617.svg)](https://asciinema.org/a/202617)
-</p>
 
-<p align="center">
+[![asciicast](https://asciinema.org/a/202617.svg)](https://asciinema.org/a/202617)
+
+
 <img src="https://github.com/csmertx/ghemx/blob/master/ghemx_screenshot.png?raw=true" alt="Preview of ghemx"/>
-</p>
-<pre>
 
 
 ghemx is a distraction free timer for X
