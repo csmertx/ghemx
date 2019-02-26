@@ -1,5 +1,6 @@
 # ghemx
 
+[![asciicast](https://asciinema.org/a/202617.svg)](https://asciinema.org/a/202617)
 
 <p align="center">
 <img src="https://github.com/csmertx/ghemx/blob/master/ghemx_screenshot.png?raw=true" alt="Preview of ghemx"/>
