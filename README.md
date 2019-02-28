@@ -6,6 +6,16 @@
 
 <img src="https://github.com/csmertx/ghemx/blob/master/ghemx_screenshot.png?raw=true" alt="Preview of ghemx"/>
 
+## Dependencies
+- mutt (optional)
+- gpg key to encrypt .muttrc (optional)
+
+## Installation
+- cp to /bin/ghemx(-cli) or: place wherever and add alias to .$SHELLrc
+- First run installs a config file in ~/.config/ghemx
+- Add i3blocks/timer_monitor to bar config if needed
+
+## Usage
 <pre>
 ghemx is a distraction free timer for X
 usage: ghemx [-ahlxztrms] [--help] [--list]
