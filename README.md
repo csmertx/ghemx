@@ -7,6 +7,8 @@
 <img src="https://github.com/csmertx/ghemx/blob/master/ghemx_screenshot.png?raw=true" alt="Preview of ghemx"/>
 
 ## Dependencies
+- bash
+- libnotify (optional)
 - mutt (optional)
 - gpg key to encrypt .muttrc (optional)
 
