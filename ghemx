@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 ######################################################################
 # ghemx is a distraction free timer for tiling WMs or tmux
