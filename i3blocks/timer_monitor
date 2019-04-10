@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 ARRW="\ue0b3"
 COLOR="#FFAF00"
