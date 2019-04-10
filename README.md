@@ -18,6 +18,10 @@
 - Add i3blocks/timer_monitor to bar config if needed
 
 ## Usage
+
+- Run with your favorite launcher (Gnome 3: ALT+F2, dmenu, rofi, etc.)
+- Tested with Gnome notifications, and various tiling window managers with dunst loaded.
+
 <pre>
 ghemx is a distraction free timer for X
 usage: ghemx [-ahlxztrms] [--help] [--list]
