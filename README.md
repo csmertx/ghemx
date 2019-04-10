@@ -4,11 +4,10 @@
 [![asciicast](https://asciinema.org/a/202617.svg)](https://asciinema.org/a/202617)
 
 
-<img src="https://github.com/csmertx/ghemx/blob/master/ghemx_screenshot.png?raw=true" alt="Preview of ghemx"/>
-
 ## Dependencies
 - bash
 - libnotify (optional)
+- dunst (optional for tiling WMs)
 - mutt (optional)
 - gpg key to encrypt .muttrc (optional)
 
