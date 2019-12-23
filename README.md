@@ -6,10 +6,11 @@
 
 ## Dependencies
 - bash
-- libnotify (optional)
-- dunst (optional for tiling WMs)
-- mutt (optional)
-- gpg key to encrypt .muttrc (optional)
+- libnotify (XFCE, MATE, etc.)
+- kdialog (Plasma desktop)
+- dunst (tiling WMs)
+- mutt (email notifications)
+- gpg key to encrypt .muttrc (if mutt)
 
 ## Installation
 - cp to /bin/ghemx(-cli) or: place wherever and add alias to .$SHELLrc

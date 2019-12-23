@@ -39,7 +39,6 @@ dircheck="$(ls $timer_dir 2> /dev/null)"
 ## e.g. 5555555555@txt.att.net
 alert_email=""
 
-
 if [[ -z "$dircheck" ]]; then
     echo ""
 else
@@ -241,8 +240,15 @@ echo "$time_e" > "$timer_time_tmp"
 echo "$title" > "$timer_title_tmp"
 sleep $time_x
 
+## notify-send or kdialog
+if [[ -z "$(kdialog -h)" ]]; then
+    notify-send -u critical "ghemx - $title [$time_e]"
+else
+    kdialog --passivepopup "ghemx - $title [$time_e]" "99999"
+fi
+
 ## libnotify
-notify-send -u critical "$title [$time_e]"
+#notify-send -u critical "$title [$time_e]"
 
 ## Send email with mutt
 if [[ $alert == "y" ]]; then
