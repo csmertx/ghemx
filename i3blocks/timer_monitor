@@ -18,6 +18,7 @@ else
     echo $COLOR
 fi
 
+## i3blocks mouse interaction setup
 if [[ -n $BLOCK_INSTANCE ]]; then
     password=("-h" "$BLOCK_INSTANCE@localhost")
 fi
