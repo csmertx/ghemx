@@ -9,7 +9,7 @@ PID="$(pgrep -n -u $USER ghemx)"
 if [[ -z "$PID" ]]; then
     echo ""
 else
-    ## tells us the age of ghemx
+    ## Timer duration
     COUNT="$(ps -o etime= -p $PID | sed 's/ //g' | paste -sd ''-)"
     TITLE="$(cat /dev/shm/ghemx_title)"
     TIME_E="$(cat /dev/shm/ghemx_time)"
@@ -19,12 +19,12 @@ else
 fi
 
 if [[ -n $BLOCK_INSTANCE ]]; then
-	password=("-h" "$BLOCK_INSTANCE@localhost")
+    password=("-h" "$BLOCK_INSTANCE@localhost")
 fi
 
 ## MMB to cancel
 filter() {
-	killall ghemx
+    killall ghemx
 }
 
 case $BLOCK_BUTTON in

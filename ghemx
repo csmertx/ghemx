@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ######################################################################
-# ghemx is a distraction free timer for tiling WMs or tmux
+# ghemx is a distraction fueled timer with notifications for GUI or CLI
 # Copyright (C) 2018 csmertx
 ######################################################################
 # This program is free software: you can redistribute it and/or modify
@@ -33,6 +33,11 @@
 seconds="$((seconds + 1))"
 timer_dir="/home/$USER/.config/ghemx"
 dircheck="$(ls $timer_dir 2> /dev/null)"
+
+# notify-send or kdialog
+# (kdialog is _passive_ not critical)
+# notify-send is the default
+whichvoicebox="notify-send"
 
 ### alert requires mutt
 ## e.g. user@emailservice.com
@@ -71,7 +76,7 @@ function timer_save_check {
 
 # Documentation
 function help {
-echo -e "\nghemx is a distraction free timer for X"
+echo -e "\nghemx is a distraction fueled timer with notifications for GUI or CLI"
 echo "usage: ghemx [-ahlxztrms] [--help] [--list]"
 echo "-h|--help     Read me"
 echo "-l|--list     List directory of ghemx tmp & save files"
@@ -79,7 +84,7 @@ echo "              and list saved timer entries"
 echo "-x            Save timer (e.g. -x 'Waffles' -m 12)"
 echo "              (becomes current title)"
 echo "-z            Restore timer (e.g. -z 'example')"
-echo "-t            Timer title (default: Timer)"
+echo "-t            Timer title (defaults to: ????)"
 echo "-r            Timer hours"
 echo "-m            Timer minutes"
 echo "-s            Timer seconds"
@@ -226,7 +231,7 @@ else
 fi
 
 if [[ -z $title ]]; then
-    title="Timer"
+    title="????"
 fi
 
 ## Total number of seconds
@@ -241,7 +246,7 @@ echo "$title" > "$timer_title_tmp"
 sleep $time_x
 
 ## notify-send or kdialog
-if [[ -z "$(kdialog -h)" ]]; then
+if [[ "$whichvoicebox" == "notify-send" ]]; then
     notify-send -u critical "ghemx - $title [$time_e]"
 else
     kdialog --passivepopup "ghemx - $title [$time_e]" "99999"

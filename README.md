@@ -1,29 +1,24 @@
 # ghemx
 
-
-[![asciicast](https://asciinema.org/a/202617.svg)](https://asciinema.org/a/202617)
-
-
 ## Dependencies
 - bash
-- libnotify (XFCE, MATE, etc.)
-- kdialog (Plasma desktop)
+- libnotify (Ubuntu: libnotify-bin)
+- kdialog (KDE Desktop)
 - dunst (tiling WMs)
 - mutt (email notifications)
 - gpg key to encrypt .muttrc (if mutt)
 
 ## Installation
-- cp to /bin/ghemx(-cli) or: place wherever and add alias to .$SHELLrc
-- First run installs a config file in ~/.config/ghemx
-- Add i3blocks/timer_monitor to bar config if needed
+- cp to /usr/bin/ghemx(-cli) or: place wherever & add alias to .$SHELLrc
+- Add i3blocks/timer_monitor to bar config if desired
 
 ## Usage
-
 - Run with your favorite launcher (Gnome 3: ALT+F2, dmenu, rofi, etc.)
-- Tested with Gnome notifications, and various tiling window managers with dunst loaded.
+- Tested with Gnome 3, KDE Desktop, i3wm, & bspwm.
+- First saved timer creates dir ~/.config/ghemx & ghemx_timers.conf if not found
 
 <pre>
-ghemx is a distraction free timer for X
+ghemx is a distraction fueled timer with notifications for GUI or CLI
 usage: ghemx [-ahlxztrms] [--help] [--list]
 -h|--help     Read me
 -l|--list     List directory of ghemx tmp & save files
@@ -31,7 +26,7 @@ usage: ghemx [-ahlxztrms] [--help] [--list]
 -x            Save timer (e.g. -x 'Waffles' -m 12)
               (becomes current title)
 -z            Restore timer (e.g. -z 'example')
--t            Timer title (default: Timer)
+-t            Timer title (defaults to: ????)
 -r            Timer hours
 -m            Timer minutes
 -s            Timer seconds
