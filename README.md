@@ -18,7 +18,7 @@
 - First saved timer creates dir ~/.config/ghemx & ghemx_timers.conf if not found
 
 <pre>
-ghemx is a distraction fueled timer with notifications for GUI or CLI
+ghemx is a distraction fueled timer with notifications
 usage: ghemx [-ahlxztrms] [--help] [--list]
 -h|--help     Read me
 -l|--list     List directory of ghemx tmp & save files
