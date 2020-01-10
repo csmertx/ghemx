@@ -14,7 +14,7 @@
 
 ## Usage
 - Run with your favorite launcher (Gnome 3: ALT+F2, dmenu, rofi, etc.)
-- Tested with Gnome 3, KDE Desktop, i3wm, & bspwm.
+- Tested with Gnome 3, KDE Desktop, i3wm, & bspwm, etc.
 - First saved timer creates dir ~/.config/ghemx & ghemx_timers.conf if not found
 
 <pre>
