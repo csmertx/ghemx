@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ######################################################################
-# ghemx is a distraction fueled timer with notifications for GUI or CLI
+# ghemx is a distraction fueled timer with notifications
 # Copyright (C) 2018 csmertx
 ######################################################################
 # This program is free software: you can redistribute it and/or modify
@@ -75,7 +75,7 @@ function timer_save_check {
 
 # Documentation
 function help {
-echo -e "\nghemx is a distraction fueled timer with notifications for GUI or CLI"
+echo -e "\nghemx is a distraction fueled timer with notifications"
 echo "usage: ghemx [-ahlxztrms] [--help] [--list]"
 echo "-h|--help     Read me"
 echo "-l|--list     List directory of ghemx tmp & save files"
