@@ -2,7 +2,7 @@
 
 ######################################################################
 # ghemx is a distraction fueled timer with notifications
-# Copyright (C) 2018 csmertx
+# Copyright (C) 2020 csmertx
 ######################################################################
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -34,10 +34,13 @@ seconds="$((seconds + 1))"
 timer_dir="/home/$USER/.config/ghemx"
 dircheck="$(ls $timer_dir 2> /dev/null)"
 
-# notify-send or kdialog
-# (kdialog is _passive_ not critical)
-# notify-send is the default
+## notify-send or kdialog
+## (kdialog is _passive_ not critical)
+## notify-send is the default
 whichvoicebox="notify-send"
+
+## Sound on (1) or off (0)
+audio_notify=1
 
 ### alert requires mutt
 ## e.g. user@emailservice.com
@@ -247,9 +250,19 @@ sleep $time_x
 
 ## notify-send or kdialog
 if [[ "$whichvoicebox" == "notify-send" ]]; then
-    notify-send -u critical "ghemx - $title [$time_e]"
+    if [[ $audio_notify -eq 1 ]]; then
+        notify-send -u critical -i clock "ghemx" "$title [$time_e]"
+        mplayer -noconsolecontrols -really-quiet 2>/dev/null /usr/share/sounds/freedesktop/stereo/complete.oga
+    else
+        notify-send -u critical -i clock "ghemx" "$title [$time_e]"
+     fi
 else
-    kdialog --passivepopup "ghemx - $title [$time_e]" "99999"
+    if [[ $audio_notify -eq 1 ]]; then
+        kdialog --passivepopup "ghemx - $title [$time_e]" "99999"
+        mplayer -noconsolecontrols -really-quiet 2>/dev/null /usr/share/sounds/freedesktop/stereo/complete.oga
+    else
+        kdialog --passivepopup "ghemx - $title [$time_e]" "99999"
+    fi
 fi
 
 ## libnotify

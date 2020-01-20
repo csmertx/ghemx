@@ -5,6 +5,7 @@ ghem - Klingon for midnight snack
 - bash
 - libnotify (Ubuntu: libnotify-bin)
 - kdialog (KDE Desktop)
+- mplayer (notification sounds)
 - dunst (tiling WMs)
 - mutt (email notifications)
 - gpg key to encrypt .muttrc (if mutt)
