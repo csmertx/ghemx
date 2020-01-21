@@ -1,7 +1,7 @@
 # ghemx?
 ghem: A Klingon [word](http://klingonska.org/dict/?q=ghem)  for midnight snack
 
-<center>![Screenshot of ghemx notification](https://github.com/csmertx/ghemx/raw/master/screenshot.png  "Screenshot of ghemx notification")</center>
+![Screenshot](screenshot.png)
 
 ## Dependencies
 - bash
