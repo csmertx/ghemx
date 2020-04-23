@@ -27,9 +27,9 @@ usage: ghemx [-ahlxztrms] [--help] [--list]
 -h|--help     Read me
 -l|--list     List directory of ghemx tmp & save files
               and list saved timer entries
--x            Save timer (e.g. -x 'Waffles' -m 12)
+-x            Save timer (e.g. -x 'seitan' -m 10)
               (becomes current title)
--z            Restore timer (e.g. -z 'example')
+-z            Restore timer (e.g. -z 'tendies')
 -t            Timer title (defaults to: ????)
 -r            Timer hours
 -m            Timer minutes
