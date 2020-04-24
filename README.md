@@ -1,6 +1,7 @@
 # ghemx
 ghem: A Klingon [word](http://klingonska.org/dict/?q=ghem)  for midnight (or late night) snack.
 
+![Screenshot](screenshot1.png)
 ![Screenshot](screenshot.png)
 
 ## Dependencies
@@ -13,7 +14,7 @@ ghem: A Klingon [word](http://klingonska.org/dict/?q=ghem)  for midnight (or lat
 - gpg key to [encrypt](https://pthree.org/2012/01/07/encrypted-mutt-imap-smtp-passwords/) .muttrc (if [mutt](https://wiki.archlinux.org/index.php/Mutt))
 
 ## Installation
-- cp to /usr/bin/ghemx(-cli) or: place wherever & add alias to .$SHELLrc
+- cp to ~/.local/bin or /usr/bin or: place wherever & add alias to .$SHELLrc
 - Add i3blocks/timer_monitor to bar config if desired
 
 ## Usage
