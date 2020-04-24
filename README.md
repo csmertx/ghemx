@@ -10,7 +10,7 @@ ghem: A Klingon [word](http://klingonska.org/dict/?q=ghem)  for midnight snack
 - mplayer (notification sounds)
 - dunst (tiling WMs)
 - mutt (email notifications)
-- gpg key to encrypt .muttrc (if mutt)
+- gpg key to [encrypt](https://pthree.org/2012/01/07/encrypted-mutt-imap-smtp-passwords/) .muttrc (if [mutt](https://wiki.archlinux.org/index.php/Mutt))
 
 ## Installation
 - cp to /usr/bin/ghemx(-cli) or: place wherever & add alias to .$SHELLrc
