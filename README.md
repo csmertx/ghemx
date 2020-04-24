@@ -1,6 +1,7 @@
 # ghemx
 ghem: A Klingon [word](http://klingonska.org/dict/?q=ghem)  for midnight snack
 
+![Screenshot](screenshot1.png)
 ![Screenshot](screenshot.png)
 
 ## Dependencies
