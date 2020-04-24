@@ -1,5 +1,5 @@
 # ghemx
-ghem: A Klingon [word](http://klingonska.org/dict/?q=ghem)  for midnight snack
+ghem: A Klingon [word](http://klingonska.org/dict/?q=ghem)  for midnight (or late night) snack.
 
 ![Screenshot](screenshot1.png)
 ![Screenshot](screenshot.png)
