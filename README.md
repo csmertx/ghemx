@@ -2,7 +2,7 @@
 
 An alarm/timer management system for Bash shell that can also be used with tiling window managers.
 
-[ghemx.mp4](https://raw.githubusercontent.com/csmertx/ghemx/master/ghemx.webm)
+[ghemx.webm](https://raw.githubusercontent.com/csmertx/ghemx/master/ghemx.webm)
 
 ## Dependencies
 
