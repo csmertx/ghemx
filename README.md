@@ -2,7 +2,7 @@
 
 An alarm/timer management system for Bash shell that can also be used with tiling window managers.
 
-![Video](ghemx.mp4 "Ghemx example via a BSPWM/Polybar desktop configuration")
+https://raw.githubusercontent.com/csmertx/ghemx/master/ghemx.mp4
 
 ## Dependencies
 
