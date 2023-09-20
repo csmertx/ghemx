@@ -87,7 +87,7 @@ echo "              and list saved timer entries"
 echo "-x            Save timer (e.g. -x 'seitan' -m 10)"
 echo "              (becomes current title)"
 echo "-z            Restore timer (e.g. -z 'tendies')"
-echo "-t            Timer title (defaults to: ????)"
+echo "-t            Timer title (defaults to: Timer)"
 echo "-r            Timer hours"
 echo "-m            Timer minutes"
 echo "-s            Timer seconds"
@@ -234,7 +234,7 @@ else
 fi
 
 if [[ -z $title ]]; then
-    title="????"
+    title="Timer"
 fi
 
 ## Total number of seconds
