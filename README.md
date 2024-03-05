@@ -2,6 +2,8 @@
 
 Bash based alarm/timer built for tiling window managers.
 
+![Screenshot](chris_arch-2018-08-20-01_22.png)
+
 ![ghemx.webm](https://raw.githubusercontent.com/csmertx/ghemx/master/ghemx.webm)
 
 ## Dependencies
@@ -88,7 +90,7 @@ usage: ghemx [-ahlxztrms] [--help] [--list]
 -a            Send alert email (e.g. -t 'example' -s 15 -a y)
 </pre>
 
-## Screenshots
+## DE Screenshots
 
 > Gnome 3 (Ubuntu 20.04)
 
