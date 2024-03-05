@@ -1,8 +1,8 @@
 # ghemx
 
-A Bash based alarm/timer built for tiling window managers.
+Bash based alarm/timer built for tiling window managers.
 
-[ghemx.webm](https://raw.githubusercontent.com/csmertx/ghemx/master/ghemx.webm)
+![ghemx.webm](https://raw.githubusercontent.com/csmertx/ghemx/master/ghemx.webm)
 
 ## Dependencies
 
