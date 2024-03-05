@@ -1,6 +1,6 @@
 # ghemx
 
-An alarm/timer management system for Bash shell that can also be used with tiling window managers.
+A Bash based alarm/timer built for tiling window managers.
 
 [ghemx.webm](https://raw.githubusercontent.com/csmertx/ghemx/master/ghemx.webm)
 
